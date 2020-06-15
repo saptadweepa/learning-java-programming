@@ -10,6 +10,11 @@ public class Fundamental {
 	 *	H.W	1. revise till class
 	 *		2. remember all the previous program.
 	 *		3. complete the above question.
+	 *
+	 *q3.	Add methods in account for adding & withdrawing money. Demonstrate the usage in main method.
+	 *
+	 *q4. 	create a class Bank which will have list of Accounts , it should have methods to add an account and
+	 *		print all the available account.
 	 */
 	
 	public static void main(String args[]) {
@@ -19,8 +24,21 @@ public class Fundamental {
 		acc1.printDetails();
 		acc2.printDetails();
 		acc3.printDetails();
-		   
-	}
+		System.out.println("balance in account: "+acc1.accountNum+" before adding is : " + acc1.balance);
+		acc1.addMoney(1000);
+		System.out.println("balance in account: "+acc1.accountNum+" after adding money is : " + acc1.balance );
+		System.out.println("balance in account: "+acc1.accountNum+" before withdrawing is : " + acc1.balance);
+		 acc1.withdrawMoney(500);
+		 System.out.println("balance in account: "+acc1.accountNum+" after withdrawing money is : " + acc1.balance );
+		 
+		 //creating bank
+		 Bank bank= new Bank();
+		 bank.addAcc(acc1);
+		 bank.addAcc(acc2);
+		 bank.addAcc(acc3);
+		 bank.printAccDetails();
+		 
+		   }
 
 }
 
@@ -50,7 +68,39 @@ class Account{                 // Class is a bluePrint of object . Objects are u
 		System.out.println();
 	}
 	
+	public void addMoney(int money ) {
+		
+		balance= balance + money;	
+		
+	}
 	
+public void withdrawMoney(int money ) {
+		
+		balance= balance - money;	
+		
+	}
+	
+}
+
+class Bank{
+	Account acc[]=new Account[10];
+	int i=0;
+	
+	public void addAcc(Account a) {
+		if(i<acc.length) {
+		acc[i]= a;
+		i++;
+		}
+		else {
+			System.out.println("max no. of account has reached ");
+		}
+	}
+	
+	public void printAccDetails() {
+		for(int g=0; g<i;g++) {
+			acc[g].printDetails();
+		}
+	}
 	
 	
 	
